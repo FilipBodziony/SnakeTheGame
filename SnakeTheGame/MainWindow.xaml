@@ -1,0 +1,263 @@
+﻿<Window x:Class="SnakeTheGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SnakeTheGame"
+        mc:Ignorable="d"
+        Title="SnakeTheGame"
+        Height="910"
+        Width="840"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="LightYellow">
+
+    <Grid>
+        <!-- Panel Sterowania / przycisk zamknij/zminimalizuj -->
+        <Grid Height="20"
+              Background="Gray"
+              VerticalAlignment="Top"
+              x:Name="controlPanel"
+              MouseDown="ControlPanel_MouseDown">
+            <Label VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   FontFamily="Monospace"
+                   Foreground="white"
+                   FontSize="10">SnakeTheGame</Label>
+            <Button x:Name="btnClose"
+                    Content="X"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Width="20"
+                    Height="20"
+                    Background="Red"
+                    Click="CloseApp"/>
+            <Button x:Name="btnMinimalise"
+                    Content="-"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Width="20"
+                    Height="20"
+                    Background="LightBlue"
+                    Click="MinimizeApp"
+                    Margin="0 0 25 0"/>
+        </Grid>
+
+        <!-- Menu gry -->
+        <Grid Height="890"
+              Background="Green"
+              VerticalAlignment="Top"
+              Margin="0 20 0 0"
+              x:Name="menuGry">
+            <Label VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   FontFamily="monospace"
+                   FontWeight="Bold"
+                   FontSize="80"
+                   Foreground="white"
+                   Margin="0 40 0 0">SnakeTheGame</Label>
+            <Label VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   FontFamily="monospace"
+                   FontWeight="Bold"
+                   FontSize="40"
+                   Foreground="white"
+                   Margin="0 150 0 0">Write your nickname:</Label>
+            <TextBox x:Name="txtNick"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Center"
+                     TextAlignment="Center"
+                     FontFamily="monospace"
+                     FontWeight="Bold"
+                     FontSize="40"
+                     Foreground="white"
+                     Background="LightGray"
+                     Margin="0 220 0 0"
+                     Width="300"/>
+            <Button x:Name="btnDifficultySelector"
+                    Width="300"
+                    Height="100"
+                    Content="Select Difficulty"
+                    Background="LightGray"
+                    FontFamily="monospace"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    FontSize="35"
+                    Click="showDifficulty"/>
+            <Button x:Name="btnScoreboard"
+                    Content="Scoreboard"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Width="200"
+                    Height="75"
+                    Background="Yellow"
+                    FontFamily="monospace"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    FontSize="30"
+                    Margin="0 0 0 0"
+                    Click="showScoreboard"/>
+
+            <Button x:Name="btnStart"
+                    Content="Start"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Width="200"
+                    Height="75"
+                    Background="LightGray"
+                    FontFamily="monospace"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    FontSize="50"
+                    Margin="0 0 0 100"
+                    Click="StartGame"/>
+
+            <Label Content="Made with ♡ by Filip and Kacper"
+                   Foreground="white"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Right"/>
+
+        </Grid>
+
+        <!--Scoreboard-->
+
+        <Grid x:Name="scoreboard"
+              Margin="0 20 0 0"
+              Height="890"
+              Background="AliceBlue"
+              Visibility="Hidden">
+            <Label VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   FontFamily="monospace"
+                   FontWeight="Bold"
+                   FontSize="60"
+                   Foreground="black"
+                   Margin="0 20 0 0">LEADERBOARD</Label>
+
+
+            <ListView x:Name="scoreboardList"
+                      Width="500"
+                      Height="500">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="name"
+                                        DisplayMemberBinding="{Binding username}"
+                                        Width="245">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="{x:Type FrameworkElement}">
+                                    <Setter Property="IsHitTestVisible"
+                                            Value="False"/>
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+                        </GridViewColumn>
+                        <GridViewColumn Header="score"
+                                        DisplayMemberBinding="{Binding score}"
+                                        Width="245">
+                            <GridViewColumn.HeaderContainerStyle>
+                                <Style TargetType="{x:Type FrameworkElement}">
+                                    <Setter Property="IsHitTestVisible"
+                                            Value="False"/>
+                                </Style>
+                            </GridViewColumn.HeaderContainerStyle>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+
+            <Button x:Name="btnBack"
+                    Content="Back"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Width="200"
+                    Height="75"
+                    Background="LightGray"
+                    FontFamily="monospace"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    FontSize="50"
+                    Margin="0 0 0 50"
+                    Click="BackToMenu"/>
+        </Grid>
+
+        <!--Difficulty-->
+
+        <Grid x:Name="difficulty"
+              Margin="0 20 0 0"
+              Height="890"
+              Background="AliceBlue"
+              Visibility="Hidden">
+            <Label VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   FontFamily="monospace"
+                   FontWeight="Bold"
+                   FontSize="60"
+                   Foreground="black"
+                   Margin="0 20 0 0">Select Difficulty</Label>
+
+            <ComboBox x:Name="selectedDifficulty"
+                      SelectedIndex="0"
+                      Width="400"
+                      Height="100"
+                      Margin="0 150 0 0"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Top"
+                      FontFamily="monospace"
+                      FontSize="50"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center">
+                <ComboBoxItem>
+                    Easy
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Medium
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    Hard
+                </ComboBoxItem>
+            </ComboBox>
+
+            <Button x:Name="btnBack2"
+                    Content="Back"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Width="200"
+                    Height="75"
+                    Background="LightGray"
+                    FontFamily="monospace"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    FontSize="50"
+                    Margin="0 0 0 50"
+                    Click="BackToMenu"/>
+        </Grid>
+
+        <!-- GAME BOARD -->
+        <Grid Background="DarkOliveGreen"
+              Margin="0 20 0 0"
+              Visibility="Hidden"
+              x:Name="gameGrid">
+            <Grid x:Name="wynikGrid"
+                  Margin="0 5 0 0"
+                  Height="50"
+                  VerticalAlignment="Top">
+                <Label x:Name="scoreLabel"
+                       Content="SCORE: "
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="monospace"
+                       FontSize="40"
+                       FontWeight="Bold"></Label>
+            </Grid>
+            <Grid x:Name="gameBoard"
+                  Margin="0 70 0 0"
+                  VerticalAlignment="Top"
+                  Background="LightGoldenrodYellow"
+                  Height="800"
+                  Width="800"
+                  HorizontalAlignment="Center"></Grid>
+        </Grid>
+
+    </Grid>
+</Window>

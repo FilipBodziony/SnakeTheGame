@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SnakeTheGame</id>
+    <version>1.0.0</version>
+    <authors>SnakeTheGame</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net6.0-windows7.0" />
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net6.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <files include="any/net6.0-windows7.0/scores/scores.json" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="D:\PROJEKTY\C# - Desktopy i mobilki\SnakeTheGame\SnakeTheGame\bin\Debug\net6.0-windows\SnakeTheGame.runtimeconfig.json" target="lib\net6.0-windows7.0\SnakeTheGame.runtimeconfig.json" />
+    <file src="D:\PROJEKTY\C# - Desktopy i mobilki\SnakeTheGame\SnakeTheGame\bin\Debug\net6.0-windows\SnakeTheGame.dll" target="lib\net6.0-windows7.0\SnakeTheGame.dll" />
+    <file src="D:\PROJEKTY\C# - Desktopy i mobilki\SnakeTheGame\SnakeTheGame\scores\scores.json" target="content\scores\scores.json" />
+    <file src="D:\PROJEKTY\C# - Desktopy i mobilki\SnakeTheGame\SnakeTheGame\scores\scores.json" target="contentFiles\any\net6.0-windows7.0\scores\scores.json" />
+  </files>
+</package>
